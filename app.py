@@ -1,11 +1,14 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-
+basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Foli1882@localhost/flaskdatabase'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Foli1882@localhost/flaskdatabase'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'flaskbookapp.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "somethingunique"
+
 
 db = SQLAlchemy(app)
 
